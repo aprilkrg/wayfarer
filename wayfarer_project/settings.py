@@ -121,4 +121,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # working on sending welcome email, with help from https://studygyaan.com/django/how-to-signup-user-and-send-confirmation-email-in-django
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# other tutorial for sending welcome email https://www.geeksforgeeks.org/setup-sending-email-in-django-project/?ref=rp
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'april.gonzales@generalassemb.ly'
+EMAIL_HOST_PASSWORD = ''
