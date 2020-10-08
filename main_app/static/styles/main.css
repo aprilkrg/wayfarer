@@ -2,3 +2,15 @@
     max-height: 80vh;
 }
 
+#description {
+    text-align: center;
+}
+
+nav {
+    /* background-color: grey; */
+    color: whitesmoke;
+}
+
+.nav-link {
+    color: whitesmoke;
+}

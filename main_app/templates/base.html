@@ -13,9 +13,10 @@
 </head>
 <body>
 <header>
-        <nav>
-            <ul class="nav justify-content-end">
-                <h1>WAYFARER</h1>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand nav-link" href="">WAYFARER</a>
+            <ul class="nav">
+                <div class="nav justify-content-end">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Profile</a>
@@ -31,6 +32,7 @@
                         <a class="nav-link" href="#">Sign Up</a>
                     </li>
                 {% endif %}
+                </div>
             </ul>
         </nav>
     </header>
