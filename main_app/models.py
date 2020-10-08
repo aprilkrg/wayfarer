@@ -9,6 +9,7 @@ class City(models.Model):
 
 class Profile(models.Model):
     user_id = models.OneToOneField( User, on_delete=models.CASCADE )
+    email = models.CharField( max_length=100 )
     current_city = models.OneToOneField( City, on_delete=models.CASCADE )
     created_at = models.DateTimeField( auto_now_add=True )
     updated_at = models.DateTimeField( auto_now=True )
