@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# working on sending welcome email, with help from https://studygyaan.com/django/how-to-signup-user-and-send-confirmation-email-in-django
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
