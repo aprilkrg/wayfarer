@@ -1,15 +1,12 @@
 from main_app.models import Profile
-from main_app.views import profile
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import auth
-from django.contrib.auth import authenticate, login
-from main_app.form import ProfileForm 
+# checks user and redirect them if they are valid
+from django.contrib.auth import authenticate, login as auth_login
 
 def register(request):
     print(request.method, '/register' )
-
     if request.method == 'POST':
         current_city = request.POST['current_city']
         username = request.POST['username']
@@ -20,13 +17,13 @@ def register(request):
         if password == password2: 
             user = User.objects.create_user( username, email, password )
             user.save()
-            profile = Profile(current_city=current_city, user_id=user )
+            profile = Profile( current_city=current_city, user_id=user )
             profile.save()
             # return redirect( 'profile' )
             user = authenticate( request, username=username, password=password )
-            
+
             if user is not None:
-                login( request, user )
+                auth_login( request, user )
                 return redirect( 'profile' )
         else:
             return render( request, 'home.html' )
@@ -36,9 +33,9 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = auth.authenticate( username=username, password=password )
+        user = authenticate( username=username, password=password )
         if user is not None:
-            auth.login(request, user)
+            auth_login(request, user)
             return redirect('cities')
         else:
             context = {'error':'Invalid username or password'}
