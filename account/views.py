@@ -1,42 +1,41 @@
+from main_app.models import Profile
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
-from main_app.models import Profile
-from main_app.form import ProfileForm 
+# checks user and redirect them if they are valid
+from django.contrib.auth import authenticate, login as auth_login
 
-# Create your views here.
+def register(request):
+    print(request.method, '/register' )
+    if request.method == 'POST':
+        current_city = request.POST['current_city']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
 
-# def register(request):
-    # return render(request, 'auth/sign_in.html', context)
+        if password == password2: 
+            user = User.objects.create_user( username, email, password )
+            user.save()
+            profile = Profile( current_city=current_city, user_id=user )
+            profile.save()
+            # return redirect( 'profile' )
+            user = authenticate( request, username=username, password=password )
 
-    # if request.method == 'POST':
-    #     current_city = request.POST['current_city']
-    #     profile_photo = request.POST['profile_photo']
-    #     form = UserCreationForm( request.POST )
-    #     if form.is_valid():
-    #         user = form.save()
-    #         profile = Profile.objects.create( current_city, profile_photo )
-    #         profile.save()
-
-
-    #     login(request, user)
-    #     return redirect('cats_index')
-    #   else:
-    #     error_message = 'Invalid sign up - try again'
-    # form = UserCreationForm()
-    # context = {'form': form, 'error_message': error_message}
+            if user is not None:
+                auth_login( request, user )
+                return redirect( 'profile' )
+        else:
+            return render( request, 'home.html' )
 
 
 def login(request):
-    print('login', request.method)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = auth.authenticate( username=username, password=password )
+        user = authenticate( username=username, password=password )
         if user is not None:
-            auth.login(request, user)
+            auth_login(request, user)
             return redirect('cities')
         else:
             context = {'error':'Invalid username or password'}
