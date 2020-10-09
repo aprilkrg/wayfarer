@@ -11,4 +11,10 @@ class CityForm( forms.ModelForm ):
 class ProfileForm( forms.ModelForm ):
     class Meta:
         model = Profile
-        fields = ('email',)        
+        fields = ( 'current_city', 'profile_photo', )        
+
+
+class PostForm( forms.ModelForm ):
+    class Meta:
+        model = Post
+        fields = ( 'post_body', )          

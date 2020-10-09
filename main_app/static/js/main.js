@@ -13,17 +13,18 @@
 
 // $('.navbar').on('click', (e) => {
 //     console.log(e.target.id);
-//     // const targetId = e.target.id === 'register' ? 'register' : 'login';
 //     const targetId = e.target.id;
+//     window.location.href = window.location.href + 'accounts/' + targetId
+//     // // const targetId = e.target.id === 'register' ? 'register' : 'login';
 
-//     // $btn.attr({
-//     //     'data-target': `#${targetId}`
-//     // });
+//     // // $btn.attr({
+//     // //     'data-target': `#${targetId}`
+//     // // });
 
-//     $modal.attr({
-//         id: targetId
-//     })
+//     // $modal.attr({
+//     //     id: targetId
+//     // })
 
-//     // $modalTitle.text(targetId)
-//     console.log($modal);
+//     // // $modalTitle.text(targetId)
+//     // console.log($modal);
 // })
