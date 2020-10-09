@@ -7,10 +7,6 @@ def home( request ):
     # return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
     return render(request, 'home.html')
 
-
-def register(request):
-    return render( request, 'modal/modal.html' )
-
 def profile(request):
     return render(request, 'user/profile.html')
 
