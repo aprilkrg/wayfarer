@@ -8,8 +8,8 @@ def home(request):
     return render(request, 'home.html')
 
 
-def register(request):
-    return render( request, 'modal/modal.html' )
+# def register(request):
+#     return render( request, 'modal/modal.html' )
 
-def login(request):
-    return render( request, 'modal/modal.html' )
+# def login(request):
+#     return render( request, 'modal/modal.html' )
