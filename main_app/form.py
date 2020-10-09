@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from django.db.models import fields
 from .models import City, Profile, Post
 
