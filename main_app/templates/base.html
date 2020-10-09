@@ -16,7 +16,7 @@
 <body>
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand nav-link" href="">WAYFARER</a>
+            <a class="navbar-brand nav-link" href="{% url 'home' %}">WAYFARER</a>
             <ul class="nav">
                 {% comment %} <div class="nav justify-content-end">
                     <li class="nav-item">
@@ -32,7 +32,7 @@
                 {% if user.is_authenticated %}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                     </li>
 
                     <li class="nav-item">
