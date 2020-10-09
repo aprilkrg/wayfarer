@@ -18,7 +18,27 @@
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand nav-link" href="">WAYFARER</a>
             <ul class="nav">
-                <div class="nav justify-content-end">
+                {% comment %} <div class="nav justify-content-end">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#sign-up" >
+                            Sign Up
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="login" type="button" class="btn btn-link" data-toggle="modal" data-target="#sign-in">
+                            Sign In
+                        </button>
+                    </li> {% endcomment %}
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#sign-up" >
                             Sign Up
@@ -29,34 +49,7 @@
                             Sign In
                         </button>
                     </li>
-                {% comment %} {% if user.is_authenticated %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Log Out</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-up" >
-                            Sign Up
-                        </button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in">
-                            Sign In
-                        </button>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
-                    </li>
-                {% endif %} {% endcomment %}
+                {% endif %}
                 </div>
             </ul>
         </nav>
