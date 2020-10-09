@@ -32,4 +32,4 @@ def register(request):
 #     return render( request, 'modal/modal.html' )
 
 def cities( request ):
-    return HttpResponse('<h1>Cities</h1>') 
+    return render(request, 'city/index.html') 
