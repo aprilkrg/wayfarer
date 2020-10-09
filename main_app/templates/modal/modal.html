@@ -3,7 +3,12 @@
   <div class="modal-dialog modal-dialog-centered ">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">{{modalId }}</h5>
+        {% if modalId == 'sign-up' %} 
+           <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+        {% else %}
+          <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+        {% endif %} 
+       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
