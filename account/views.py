@@ -8,29 +8,26 @@ from main_app.form import ProfileForm
 
 # Create your views here.
 
-# def register(request):
-    # return render(request, 'auth/sign_in.html', context)
+def register(request):
 
-    # if request.method == 'POST':
-    #     current_city = request.POST['current_city']
-    #     profile_photo = request.POST['profile_photo']
-    #     form = UserCreationForm( request.POST )
-    #     if form.is_valid():
-    #         user = form.save()
-    #         profile = Profile.objects.create( current_city, profile_photo )
-    #         profile.save()
+    if request.method == 'POST':
+        form = UserCreationForm( request.POST )
+        if form.is_valid():
+            user = form.save()
+            # profile = Profile.objects.create( current_city )
+            profile.save()
 
 
-    #     login(request, user)
-    #     return redirect('cats_index')
+        # login(request, user)
+        # return redirect('cities')
     #   else:
     #     error_message = 'Invalid sign up - try again'
     # form = UserCreationForm()
     # context = {'form': form, 'error_message': error_message}
+    # return render(request, 'auth/sign_in.html', context)
 
 
 def login(request):
-    print('login', request.method)
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
