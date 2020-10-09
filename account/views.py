@@ -19,7 +19,6 @@ def register(request):
             user.save()
             profile = Profile( current_city=current_city, user_id=user )
             profile.save()
-            # return redirect( 'profile' )
             user = authenticate( request, username=username, password=password )
 
             if user is not None:
@@ -36,7 +35,7 @@ def login(request):
         user = authenticate( username=username, password=password )
         if user is not None:
             auth_login(request, user)
-            return redirect('cities')
+            return redirect('profile')
         else:
             context = {'error':'Invalid username or password'}
         return render(request, 'home.html', context)
