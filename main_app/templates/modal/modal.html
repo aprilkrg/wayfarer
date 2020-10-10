@@ -1,6 +1,12 @@
 <!-- Modal -->
-<div class="modal modal-lg fade"  id="{{ modalId }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+<div class="modal fade"  id="{{ modalId }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+    {% if modalId == 'sign-up' %} 
+        <div class="modal-lg modal-dialog modal-dialog-centered">
+    {% else %}
+        <div class="modal-dialog modal-dialog-centered">
+    {% endif %} 
+
         <div class="modal-content">
         <div class="modal-header">
             {% if modalId == 'sign-up' %} 
