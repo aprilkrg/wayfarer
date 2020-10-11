@@ -15,7 +15,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField( auto_now=True )
 
 class Post(models.Model):
-    city_id = models.OneToOneField( City, on_delete=models.CASCADE, related_name="city"  )
-    user_id = models.OneToOneField( User, on_delete=models.CASCADE, related_name="user" )
+    city_id = models.ForeignKey( City, on_delete=models.CASCADE, related_name="city"  )
+    user_id = models.ForeignKey( User, on_delete=models.CASCADE, related_name="user" )
     post_body = models.TextField(  max_length=255 )
     title = models.CharField( max_length=100 )

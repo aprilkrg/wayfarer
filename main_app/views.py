@@ -1,21 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+from .models import City, Post
+
 
 def home( request ):
-    # return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
     return render(request, 'home.html')
 
-def profile(request):
-    return render(request, 'user/profile.html')
+################### NOTE City views ################################
 
-# def login(request):
-#     return render( request, 'modal/modal.html' )
+def cities_list( request ):
+    cities = City.objects.all()
+    return render(request, 'city/index.html', { 'cities': cities })
 
-def cities( request ):
-    return render(request, 'city/index.html') 
+####################################################################  
 
+
+################### NOTE Profile views ################################
+
+def profile(  request, pk ):
+    user_post = Post.objects.filter( user_id=pk )
+    return render(request, 'user/profile.html', { 'user_posts': user_post })
 
 
 
@@ -46,3 +51,12 @@ def cities( request ):
 #             profile_form = Profile_Form()
 #             context = {'profile_form': profile_form}
 #             return render(request, 'account/edit.html', context)    
+
+#######################################################################################
+
+################### NOTE Post views ################################
+
+def post_detail( request, pk ):
+    post = Post.objects.get( id=pk )
+    context = { 'post': post }
+    return render(request, 'post/show.html', context ) 

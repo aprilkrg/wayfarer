@@ -14,3 +14,9 @@ nav {
 .nav-link {
     color: whitesmoke;
 }
+
+
+/* profile page */
+.screen-80vh {
+    min-height: 80vh !important;
+}

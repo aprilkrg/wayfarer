@@ -2,11 +2,13 @@ from main_app.models import Profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django_email_verification import sendConfirm
 # checks user and redirect them if they are valid
 from django.contrib.auth import authenticate, login as auth_login
+from django.core.mail import send_mail
 
 def register(request):
-    print(request.method, '/register' )
+    
     if request.method == 'POST':
         current_city = request.POST['current_city']
         username = request.POST['username']
@@ -23,7 +25,7 @@ def register(request):
 
             if user is not None:
                 auth_login( request, user )
-                return redirect( 'profile' )
+                return redirect( f"/profile/{ user.id }" )
         else:
             return render( request, 'home.html' )
 
@@ -35,7 +37,7 @@ def login(request):
         user = authenticate( username=username, password=password )
         if user is not None:
             auth_login(request, user)
-            return redirect('profile')
+            return redirect( f"/profile/{ user.id }" )
         else:
             context = {'error':'Invalid username or password'}
         return render(request, 'home.html', context)
