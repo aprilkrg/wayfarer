@@ -1,4 +1,4 @@
-from main_app.models import Profile
+from main_app.models import Profile, Photo_profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -21,6 +21,8 @@ def register(request):
             user.save()
             profile = Profile( current_city=current_city, user_id=user )
             profile.save()
+            profile_photo = Photo_profile( profile_id = profile )
+            profile_photo.save()
             user = authenticate( request, username=username, password=password )
 
             if user is not None:

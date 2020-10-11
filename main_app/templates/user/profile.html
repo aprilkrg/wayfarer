@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     
-<div class="container">
+<div class="container p-5">
 
   <div class="row align-items-start p-3 screen-80vh ">  
 
@@ -10,19 +10,23 @@
     <div class="card flex-md-row mb-4 box-shadow h-md-250 shadow-sm">
       <div class="card-body d-flex flex-column align-items-start">
 
-        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="height: 100px" src="{{ profile_photo }}" data-holder-rendered="true" />
+        <div class="image-holder shadow-sm rounded ">
+          <img class="card-img-right flex-auto d-none d-md-block image-holder__img" data-src="holder.js/200x250?theme=thumb" alt="avatar" src="https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png" data-holder-rendered="true" />
 
-        <strong class="d-inline-block mb-2 text-primary">{{ user.username }}</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Current City: {{ user.profile.current_city }}</a>
-        </h3>
-        <div class="mb-1 text-muted">Join Date: {{ user.profile.created_at }}</div>
-          <p class="card-text mb-auto">This is where the links to posts could go...</p>
-          <a href="#">Continue reading</a>
+          <button class="btn btn-link image-holder_edit-link" type="button" data-toggle="modal" data-target="#update-photo" >
+            <p class="button-text">edit photo</p>
+          </button>
+        </div>
+
+          <strong class="d-inline-block mb-2 text-primary">{{ user.username }}</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">Current City: {{ user.profile.current_city }}</a>
+          </h3>
+          <div class="mb-1 text-muted">Join Date: {{ user.profile.created_at }}</div>
         </div>
       </div>
 
-      <p> profile photo: {{ user.profile }} </p>
+      <p> profile photo: {{ user.photo_profile }} </p>
       
 
       <!-- Insert photo markup below this comment -->
@@ -31,17 +35,6 @@
       {% else %}
         <div class="card-panel teal-text center-align">No Photos Uploaded</div>
       {% endif %}
-
-      <!-- new code below -->
-      <form action="{% url 'update_photo' user.profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-          {% csrf_token %}
-          <input type="file" name="photo-file">
-          <br><br>
-          <input type="submit" class="btn btn-primary" value="Upload Photo">
-      </form>
-
-
-
 
     <div class="my-3 p-3 bg-white rounded shadow-sm shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Posts</h6>

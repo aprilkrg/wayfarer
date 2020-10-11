@@ -8,8 +8,13 @@ from .models import City, Post, Photo_profile
 S3_BASE_URL = 'https://s3-us-west-2.amazonaws.com/'
 BUCKET = 'adawayfarer'
 
+################### NOTE Landing / About page #######################
+
 def home( request ):
-    return render(request, 'home.html')
+    return render(request, 'home.html' )
+
+####################################################################
+    
 
 ################### NOTE City views ################################
 
@@ -52,6 +57,7 @@ def update_profile_photo( request, pk ):
             photo.photo_url = url
             photo.save()
             redirect(f"/profile/{ pk }")
+            
         except:
             print('An error occurred uploading file to S3')
     return redirect(f"/profile/{ pk }")

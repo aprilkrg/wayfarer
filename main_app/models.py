@@ -21,4 +21,4 @@ class Post( models.Model ):
 
 class Photo_profile( models.Model ):
     photo_url = models.TextField( max_length=255, default="https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png")
-    profile_id = models.ForeignKey( Profile, on_delete=models.CASCADE, related_name="profile" )   
+    profile_id = models.OneToOneField( Profile, on_delete=models.CASCADE, related_name="profile" )   

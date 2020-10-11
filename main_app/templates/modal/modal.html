@@ -9,10 +9,13 @@
 
         <div class="modal-content">
         <div class="modal-header">
+
             {% if modalId == 'sign-up' %} 
-            <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+            {% elif modalId == 'sign-in' %}
+              <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
             {% else %}
-            <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">Edit Photo</h5>
             {% endif %} 
         
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -23,8 +26,10 @@
 
         {% if modalId == 'sign-up' %} 
             {% include  'auth/sign_up.html' %}
-        {% else %}
+        {% elif modalId == 'sign-in' %}
             {% include  'auth/sign_in.html' %}
+        {% else %}
+            {% include  'photo_update/photo_update.html' %}
         {% endif %} 
         
         </div>
