@@ -29,8 +29,11 @@ def cities_list( request ):
 
 def profile(  request, pk ):
     user_post = Post.objects.filter( user_id=pk )
+    profile_photo = Photo_profile.objects.get( profile_id=pk )
+
     context = {
         'user_posts': user_post,
+        'profile_photo': profile_photo.photo_url,
     }
 
     return render(request, 'user/profile.html', context )
@@ -57,7 +60,7 @@ def update_profile_photo( request, pk ):
             photo.photo_url = url
             photo.save()
             redirect(f"/profile/{ pk }")
-            
+
         except:
             print('An error occurred uploading file to S3')
     return redirect(f"/profile/{ pk }")
