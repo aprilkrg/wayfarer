@@ -1,8 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
-from .models import City, Post
+import uuid
+import boto3
+from .models import City, Post, Profile_photo
 
+# Add these "constants" below the imports
+S3_BASE_URL = 'https://s3-us-west-2.amazonaws.com/'
+BUCKET = 'adawayfarer'
 
 def home( request ):
     return render(request, 'home.html')
@@ -21,6 +25,31 @@ def cities_list( request ):
 def profile(  request, pk ):
     user_post = Post.objects.filter( user_id=pk )
     return render(request, 'user/profile.html', { 'user_posts': user_post })
+
+
+
+def add_profile_photo( request, pk ):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get( 'photo-file', None )
+    print( 'photo_file:', photo_file)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        print('s3:', s3, 'key:', key )
+        # just in case something goes wrong
+        # try:
+        #     s3.upload_fileobj(photo_file, BUCKET, key)
+        #     # build the full url string
+        #     url = f"{S3_BASE_URL}{BUCKET}/{key}"
+        #     # we can assign to cat_id or cat (if you have a cat object)
+        #     photo = Profile_photo( url=url, profile_id=pk)
+        #     print(photo)
+        #     photo.save()
+        #     # return render(request, 'user/profile.html', { 'profile_image': photo })
+        # except:
+        #     print('An error occurred uploading file to S3')
+    return redirect(f"/profile/{ pk }", profile_id=pk)
 
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 class City(models.Model):
@@ -19,3 +20,10 @@ class Post(models.Model):
     user_id = models.ForeignKey( User, on_delete=models.CASCADE, related_name="user" )
     post_body = models.TextField(  max_length=255 )
     title = models.CharField( max_length=100 )
+
+class Profile_photo(models.ForeignKey):
+    photo_url = models.TextField( max_length=255, default="https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png")
+    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE )
+
+    def __str__(self):
+        return f"Photo for cat_id: {self.profile_id} @{self.photo_url}"   
