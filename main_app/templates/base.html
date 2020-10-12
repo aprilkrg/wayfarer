@@ -56,15 +56,15 @@
     {% comment %} NOTE we are including the modal template and by using with we can pass properties {% endcomment %}
 
     {% comment %} NOTE Sign Up Modal  {% endcomment %}
-    {% include 'modal/modal.html' with modalId='sign-up' %}
+    {% include 'modal/modal.html' with modalId='sign-up' modalTitle='Sign Up' modal_type='modal-lg' %}
 
     {% comment %} NOTE Sign In Modal  {% endcomment %}
-    {% include 'modal/modal.html' with modalId='sign-in' %}
+    {% include 'modal/modal.html' with modalId='sign-in' modalTitle='Sign In' modal_type='modal' %}
 
     {% comment %} NOTE Photo Modal  {% endcomment %}
     {% if user.is_authenticated %}
-        {% include 'modal/modal.html' with modalId='update-photo' %}
-     {% endif %}
+        {% include 'modal/modal.html' with modalId='update-photo' modalTitle='Update Photo' modal_type='modal' %}
+    {% endif %}
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
