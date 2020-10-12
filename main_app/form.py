@@ -12,7 +12,7 @@ class CityForm( forms.ModelForm ):
 class ProfileForm( forms.ModelForm ):
     class Meta:
         model = Profile
-        fields = ( 'current_city', 'profile_photo', )        
+        fields = ( 'current_city', )        
 
 
 class PostForm( forms.ModelForm ):

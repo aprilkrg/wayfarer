@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 import uuid
 import boto3
-from .models import City, Post, Photo_profile
+from .models import City, Post, Photo_profile, Profile
 
 # Add these "constants" below the imports
 S3_BASE_URL = 'https://s3-us-west-2.amazonaws.com/'
@@ -66,9 +68,30 @@ def update_profile_photo( request, pk ):
     return redirect(f"/profile/{ pk }")
 
 
+# todo : error handling
+def profile_edit(request, pk):
+    if request.method == 'POST':
+        current_city = request.POST['current_city']
+        print(current_city)
+        # overwrite the value of current city (den) to input value (chicago)
+        # user.profile.current_city = current_city
+        user = User.objects.get(id=pk)
+        profile = Profile.objects.get(id=pk)
+        user.username = request.POST['username']
+        user.save()
+        print(user.username, 'User name <<<<')
+        profile.current_city = request.POST['current_city']
+        profile.save()
+        print(current_city, 'current city <<<<')
+        return redirect(f"/profile/{pk}")
+        
+    # else:
+    #     print('Something went wrong')
+    #     return redirect(f'/profile/{pk}/edit')
 
-# def profile_edit(request):
-#     user = request.user
+    
+    return render(request, 'user/profile_edit.html')
+    # return HttpResponse('edit')
 #     if request.method == 'POST':
 #         try:
 #             profile_form = Profile_Form(request.POST, request.FILES, instance=user.profile)
