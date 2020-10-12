@@ -27,7 +27,7 @@ def register(request):
 
             if user is not None:
                 auth_login( request, user )
-                return redirect( f"/profile/{ user.id }" )
+                return redirect( "/profile/" )
         else:
             return render( request, 'home.html' )
 
@@ -39,7 +39,7 @@ def login(request):
         user = authenticate( username=username, password=password )
         if user is not None:
             auth_login(request, user)
-            return redirect( f"/profile/{ user.id }" )
+            return redirect( "/profile/" )
         else:
             context = {'error':'Invalid username or password'}
         return render(request, 'home.html', context)
