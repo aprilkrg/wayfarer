@@ -3,16 +3,16 @@
 {% block content %}
 
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide shadow" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active" data-interval="10000">
-      <img src="https://imgur.com/a/mwkeqd6" class="d-block w-100" alt="...">
+      <img src="https://i.imgur.com/peVoplK.jpeg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item" data-interval="10000">
-      <img src="https://picsum.photos/200" class="d-block w-100" alt="...">
+      <img src="https://i.imgur.com/8eOrjy2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://picsum.photos/200" class="d-block w-100" alt="...">
+      <img src="https://i.imgur.com/Edq9tTV.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -25,22 +25,36 @@
   </a>
 </div>
 
-<h2>Wayfarer is...</h2>
+<!-- mt is margin top, mb margin botton and p padding  -->
 <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        One of three topics
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sunt facere ullam! Pariatur fugit, modi explicabo fuga quam corrupti nesciunt suscipit totam possimus a, ducimus deserunt inventore iure ab repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, totam voluptate doloremque fuga explicabo ipsam omnis modi consequatur temporibus rerum reprehenderit numquam deserunt vero sint eos ea quibusdam incidunt autem!
-      </div>
-      <div class="col-sm">
-        One of three topics
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam cupiditate reprehenderit sequi laudantium assumenda ipsam fugit eius. Vero, nobis. Temporibus dolor vel provident at, odio sit beatae unde commodi quo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, dicta iure nostrum facilis dolores amet quisquam minima fugit rem velit earum illo. Nemo excepturi magnam dicta ea error laboriosam officiis.
-      </div>
-      <div class="col-sm">
-        One of three topics
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam laborum ducimus exercitationem eum, numquam vero maiores tempora saepe totam tenetur, magnam fugiat ipsam, nesciunt deserunt enim perspiciatis repudiandae minima doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, magni laboriosam tenetur magnam libero eligendi sapiente dolorum consequuntur adipisci incidunt ratione, quis placeat asperiores! Atque itaque quas cupiditate rem animi.
-      </div>
+
+  <div class="row mt-3 mb-3">
+    <div class="col p-3">
+      <h2 class="text-center">Wayfarer is...</h2>
     </div>
   </div>
+
+  <!-- Three columns of text -->
+  <div class="row">
+    <!-- col 1 -->
+    <div class="col-lg-4 p-2">
+      <h2>Topic</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sunt facere ullam! Pariatur fugit, modi explicabo fuga quam corrupti nesciunt suscipit totam possimus a, ducimus deserunt inventore iure ab repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, totam voluptate doloremque fuga explicabo ipsam omnis modi consequatur temporibus rerum reprehenderit numquam deserunt vero sint eos ea!</p>
+    </div>
+
+    <!-- col 2 -->
+    <div class="col-lg-4 p-2">
+      <h2>Topic</h2>
+      <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam cupiditate reprehenderit sequi laudantium assumenda ipsam fugit eius. Vero, nobis. Temporibus dolor vel provident at, odio sit beatae unde commodi quo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, dicta iure nostrum facilis dolores amet quisquam minima fugit rem velit earum illo. Nemo excepturi magnam dicta ea error laboriosam officiis.</p>
+    </div>
+
+    <!-- col 3 -->
+    <div class="col-lg-4 p-2">
+      <h2>Topic</h2>
+      <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam laborum ducimus exercitationem eum, numquam vero maiores tempora saepe totam tenetur, magnam fugiat ipsam, nesciunt deserunt enim perspiciatis repudiandae minima doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, magni laboriosam tenetur magnam libero eligendi sapiente dolorum consequuntur adipisci incidunt ratione, quis! </p>
+    </div>
+
+  </div>
+</div>
 
 {% endblock %}

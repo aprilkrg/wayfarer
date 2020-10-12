@@ -1,0 +1,62 @@
+<form  method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+
+    {% comment %} row 1 start {% endcomment %}
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" placeholder="first name" name="first_name" required />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" placeholder="last name" name="last_name" required />
+        </div>
+
+    </div>
+    {% comment %} row 1 ends {% endcomment %}
+
+    {% comment %} row 2 start {% endcomment %}
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="username" name="username" required />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="current_city">Current City</label>
+            <input type="text" class="form-control" id="current_city" placeholder="current city" name="current_city" required />
+        </div>
+    </div>
+    {% comment %} row 2 ends {% endcomment %}
+
+    {% comment %} row 3 start {% endcomment %}
+    <div class="form-group">
+
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email" name="email" required />
+
+    </div>
+    {% comment %} row 3 ends {% endcomment %}
+
+     {% comment %} row 4 start {% endcomment %}
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="password" name="password" required />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="password2">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" placeholder="consfirm password" name="password2" required />
+        </div>
+    </div>
+    {% comment %} row 4 ends {% endcomment %}
+
+    <input class="btn btn-lg btn-primary btn-block shadow" type="submit" value="Sign In" />
+
+    <input type="hidden" name="next" value="{{ next }}">
+</form>

@@ -2,3 +2,88 @@
     max-height: 80vh;
 }
 
+#description {
+    text-align: center;
+}
+
+nav {
+    /* background-color: grey; */
+    color: whitesmoke;
+}
+
+.nav-link {
+    color: whitesmoke;
+}
+
+
+/* profile page */
+.screen-80vh {
+    min-height: 80vh !important;
+}
+.full-screen {
+    min-height: 93vh !important;
+}
+
+.image-holder {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-holder__img {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: all .5s;
+}
+
+.image-holder_edit-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    height: 50%; 
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none !important;
+    opacity: 0;
+    transition: all .5s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.image-holder:hover .image-holder_edit-link {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.image-holder:hover .image-holder__img {
+    transform: scale(1.2);
+    filter: blur(3px) brightness(45%);
+}
+
+
+.media-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.media-image__img {
+    width: 100%;
+    height: 100%; 
+}
+
+
+.city-header {
+    text-transform: capitalize;
+}
+
+.city-img {
+    width: 100%;
+    height: 100%;
+}
