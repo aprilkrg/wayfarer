@@ -2,12 +2,84 @@
 
 {% comment %} {% url 'artist_detail' pk=artist.id %} {% endcomment %}
 {% block content %}
-    <h1>cities</h1>
-    {% for city in  cities %}
+<div class="container-fluid">
+    <div class="row full-screen">
 
-        <li>
-            <a href="#">{{ city.name }}</a>
-        </li>
+        {% comment %} NOTE city side bar {% endcomment %}
+        <div class="col-2 bg-light p-2">
+            <h1 class="city-header">cities</h1>
+            {% for city in  cities %}
+                <ul>
+                    <a href="{% url 'cities' city.id %}">
+                        {{ city.name }}
+                    </a>
+                </ul>
 
-    {% endfor %}
+            {% endfor %}
+        </div>
+
+        {% comment %} NOTE city main content details {% endcomment %}
+        <div class="col">
+
+            {% comment %} conatainer start {% endcomment %}
+            <div class="container p-3">
+
+                {% comment %} row 1 city details {% endcomment %}
+                <div class="row mb-4 ">
+
+                    {% comment %} titles/header column {% endcomment %}
+                    <div class="col-3" >
+                        <h1 class="city-header">{{ city.name }}</h1>
+                        <strong>{{ city.country }}</strong>
+                    </div>
+
+                    {% comment %} image column {% endcomment %}
+                    <div class="col shadow p-2">
+                        <img class="city-img image-fluid" src="{{ city.image }}" >
+                    </div>
+                
+                </div>
+                {% comment %} row 1 ends {% endcomment %}
+
+                 {% comment %} row 2 add post button {% endcomment %}
+                <div class="row mb-4 ">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary rounded-circle float-right" data-toggle="modal" data-target="#sign-up" >
+                            &#43;
+                        </button>
+                    </div>
+                </div>
+               {% comment %} row 2 ends {% endcomment %}
+
+                {% comment %} row 3 comments {% endcomment %}
+                <div class="row">
+                    <div class="col">
+
+                    {% for post in  posts %}
+
+                        <div class="media text-muted pt-3">
+
+                            {% comment %} <div class="media-image mr-2 shadow">
+                            <img class="card-img-right flex-auto d-none d-md-block media-image__img" data-src="holder.js/200x250?theme=thumb" alt="avatar" src="{{ profile_photo }}" data-holder-rendered="true" />
+                            </div> {% endcomment %}
+
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark">
+                                <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                            </strong>
+                            </p>
+                        </div>
+
+                    {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+            {% comment %} conatainer ends {% endcomment %}
+
+        </div>
+    </div>
+
+</div>
 {% endblock %}

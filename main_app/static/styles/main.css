@@ -20,6 +20,9 @@ nav {
 .screen-80vh {
     min-height: 80vh !important;
 }
+.full-screen {
+    min-height: 93vh !important;
+}
 
 .image-holder {
     width: 100px;
@@ -73,4 +76,14 @@ nav {
 .media-image__img {
     width: 100%;
     height: 100%; 
+}
+
+
+.city-header {
+    text-transform: capitalize;
+}
+
+.city-img {
+    width: 100%;
+    height: 100%;
 }

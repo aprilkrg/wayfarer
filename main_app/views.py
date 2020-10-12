@@ -20,18 +20,28 @@ def home( request ):
 
 ################### NOTE City views ################################
 
-def cities_list( request ):
+def cities_list( request,  pk ):
+    
     cities = City.objects.all()
-    return render(request, 'city/index.html', { 'cities': cities })
+    city = City.objects.get(id=pk)
+    posts = Post.objects.filter(id=pk)
+
+    context = {
+        'cities': cities,
+        'city': city,
+        'posts': posts
+    }
+
+    return render(request, 'city/index.html', context )
 
 ####################################################################  
 
 
 ################### NOTE Profile views ################################
 
-def profile(  request, pk ):
-    user_post = Post.objects.filter( user_id=pk )
-    profile_photo = Photo_profile.objects.get( profile_id=pk )
+def profile(  request ):
+    user_post = Post.objects.filter( user_id=request.user.id )
+    profile_photo = Photo_profile.objects.get( profile_id=request.user.id )
 
     context = {
         'user_posts': user_post,
@@ -61,11 +71,11 @@ def update_profile_photo( request, pk ):
             photo = Photo_profile.objects.get( profile_id=pk )
             photo.photo_url = url
             photo.save()
-            redirect(f"/profile/{ pk }")
+            redirect("/profile")
 
         except:
             print('An error occurred uploading file to S3')
-    return redirect(f"/profile/{ pk }")
+    return redirect("/profile/")
 
 
 # todo : error handling
@@ -83,7 +93,7 @@ def profile_edit(request, pk):
         profile.current_city = request.POST['current_city']
         profile.save()
         print(current_city, 'current city <<<<')
-        return redirect(f"/profile/{pk}")
+        return redirect("/profile/")
         
     # else:
     #     print('Something went wrong')
