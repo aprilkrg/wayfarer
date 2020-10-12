@@ -95,7 +95,7 @@ def update_profile_photo( request, pk ):
 #             context = {'profile_form': profile_form}
 #             return render(request, 'account/edit.html', context)    
 
-#######################################################################################
+#####################################################################
 
 ################### NOTE Post views ################################
 
