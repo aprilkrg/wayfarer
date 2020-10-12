@@ -59,7 +59,7 @@ nav {
 
 .image-holder:hover .image-holder__img {
     transform: scale(1.2);
-    filter: blur(3px) brightness(25%);
+    filter: blur(3px) brightness(45%);
 }
 
 
