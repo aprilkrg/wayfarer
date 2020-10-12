@@ -15,16 +15,9 @@
             </div>
 
             <div class="modal-body">
-                {% comment %} {% include  '{{ modal_template }}' %} {% endcomment %}
 
-                {% if modalId == 'sign-up' %} 
-                    {% include  'auth/sign_up.html' %}
-                {% elif modalId == 'sign-in' %}
-                    {% include  'auth/sign_in.html' %}
-                {% else %}
-                    {% include 'photo_update/photo_update.html' %}
-                {% endif %} 
-            
+                {% include  modal_template %}
+                
             </div>
 
             <div class="modal-footer">
