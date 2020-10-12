@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% comment %} {% url 'artist_detail' pk=artist.id %} {% endcomment %}
 {% block content %}
     <h1>cities</h1>
+    {% for city in  cities %}
+
+        <li>
+            <a href="#">{{ city.name }}</a>
+        </li>
+
+    {% endfor %}
 {% endblock %}

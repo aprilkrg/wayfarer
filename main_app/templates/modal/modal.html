@@ -1,12 +1,21 @@
 <!-- Modal -->
-<div class="modal modal-lg fade"  id="{{ modalId }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+<div class="modal fade"  id="{{ modalId }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+    {% if modalId == 'sign-up' %} 
+        <div class="modal-lg modal-dialog modal-dialog-centered">
+    {% else %}
+        <div class="modal-dialog modal-dialog-centered">
+    {% endif %} 
+
         <div class="modal-content">
         <div class="modal-header">
+
             {% if modalId == 'sign-up' %} 
-            <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+            {% elif modalId == 'sign-in' %}
+              <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
             {% else %}
-            <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">Edit Photo</h5>
             {% endif %} 
         
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -17,8 +26,10 @@
 
         {% if modalId == 'sign-up' %} 
             {% include  'auth/sign_up.html' %}
-        {% else %}
+        {% elif modalId == 'sign-in' %}
             {% include  'auth/sign_in.html' %}
+        {% else %}
+            {% include  'photo_update/photo_update.html' %}
         {% endif %} 
         
         </div>
