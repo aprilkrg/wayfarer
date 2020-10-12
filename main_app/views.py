@@ -20,9 +20,19 @@ def home( request ):
 
 ################### NOTE City views ################################
 
-def cities_list( request ):
+def cities_list( request,  pk ):
+    
     cities = City.objects.all()
-    return render(request, 'city/index.html', { 'cities': cities })
+    city = City.objects.get(id=pk)
+    posts = Post.objects.filter(id=pk)
+
+    context = {
+        'cities': cities,
+        'city': city,
+        'posts': posts
+    }
+
+    return render(request, 'city/index.html', context )
 
 ####################################################################  
 
