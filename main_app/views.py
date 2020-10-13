@@ -22,11 +22,11 @@ def home( request ):
 ################### NOTE City views ################################
 
 def cities_list( request,  pk=1 ):
-    user = User.objects.get(id=request.user.id)
-    print(user.profile.photo_profile.__dict__)
+    # user = User.objects.get(id=request.user.id)
+    print(request.user.profile.__dict__)
     cities = City.objects.all()
     city = City.objects.get(id=pk)
-    posts = Post.objects.filter(city_id=pk)
+    posts = Post.objects.filter(city=pk)
 
     context = {
         'cities': cities,
@@ -43,8 +43,8 @@ def cities_list( request,  pk=1 ):
 
 
 def profile(  request ):
-    user_post = Post.objects.filter( user_id=request.user.id )
-    profile_photo = Photo_profile.objects.get( profile_id=request.user.id )
+    user_post = Post.objects.filter( user=request.user.id )
+    profile_photo = Photo_profile.objects.get( profile=request.user.id )
 
     context = {
         'user_posts': user_post,
@@ -71,7 +71,7 @@ def update_profile_photo( request, pk ):
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
             print(url)
             # we can assign to cat_id or cat (if you have a cat object)
-            photo = Photo_profile.objects.get( profile_id=pk )
+            photo = Photo_profile.objects.get( profile=pk )
             photo.photo_url = url
             photo.save()
             redirect("/profile")
@@ -120,7 +120,7 @@ def add_post( request, pk ):
                 body = request.POST['post_body']
                 city = City.objects.get( id=request.POST['city_id'] )
                 user = User.objects.get( id=request.user.id ) 
-                new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
+                new_post = Post( title=title,  post_body=body, city=city, user=user )
                 new_post.save()
                 return redirect(f'/cities/{ current_city }')
             except:
