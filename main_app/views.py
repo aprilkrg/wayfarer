@@ -22,7 +22,8 @@ def home( request ):
 ################### NOTE City views ################################
 
 def cities_list( request,  pk=1 ):
-    
+    user = User.objects.get(id=request.user.id)
+    print(user.profile.photo_profile.__dict__)
     cities = City.objects.all()
     city = City.objects.get(id=pk)
     posts = Post.objects.filter(city_id=pk)
