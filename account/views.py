@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 def register(request):
     
     if request.method == 'POST':
-        if request.POST is not '':
+        if request.POST !='':
             try:
                 current_city = request.POST['current_city']
                 username = request.POST['username']
