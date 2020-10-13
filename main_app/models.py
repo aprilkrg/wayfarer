@@ -16,6 +16,8 @@ class Profile( models.Model ):
 class Post( models.Model ):
     title = models.CharField( max_length=100 )
     post_body = models.TextField(  max_length=255 )
+    created_at = models.DateTimeField( auto_now_add=True )
+    updated_at = models.DateTimeField( auto_now=True )
     city_id = models.ForeignKey( City, on_delete=models.CASCADE, related_name="city"  )
     user_id = models.ForeignKey( User, on_delete=models.CASCADE, related_name="user" )
 

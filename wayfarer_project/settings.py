@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Add this variable to specify where successful logins should redirect to
-# LOGIN_REDIRECT_URL = '/cities/'
+LOGIN_REDIRECT_URL = '/cities/1'
