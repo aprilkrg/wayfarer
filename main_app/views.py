@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -24,7 +25,7 @@ def cities_list( request,  pk ):
     
     cities = City.objects.all()
     city = City.objects.get(id=pk)
-    posts = Post.objects.filter(id=pk)
+    posts = Post.objects.filter(city_id=pk)
 
     context = {
         'cities': cities,
@@ -38,6 +39,7 @@ def cities_list( request,  pk ):
 
 
 ################### NOTE Profile views ################################
+
 
 def profile(  request ):
     user_post = Post.objects.filter( user_id=request.user.id )
@@ -101,7 +103,6 @@ def profile_edit(request, pk):
 
     
     return render(request, 'user/profile_edit.html')
-    # return HttpResponse('edit')
 #     if request.method == 'POST':
 #         try:
 #             profile_form = Profile_Form(request.POST, request.FILES, instance=user.profile)
@@ -136,3 +137,17 @@ def post_detail( request, pk ):
     post = Post.objects.get( id=pk )
     context = { 'post': post }
     return render(request, 'post/show.html', context ) 
+
+
+
+
+def add_post( request, pk ):
+    current_city = pk
+    if request.method == 'POST':
+        title = request.POST['title']
+        body = request.POST['post_body']
+        city = City.objects.get( id=request.POST['city_id'] )
+        user = User.objects.get( id=request.user.id ) 
+        new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
+        new_post.save()
+        return redirect(f'/cities/{ current_city }')    

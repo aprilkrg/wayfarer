@@ -16,7 +16,11 @@
 <body>
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand nav-link" href="{% url 'home' %}">WAYFARER</a>
+            {% if user.is_authenticated %}
+                <a class="navbar-brand nav-link" href="{% url 'cities' 1 %}">WAYFARER</a>
+            {% else %}   
+                <a class="navbar-brand nav-link" href="{% url 'home' %}">WAYFARER</a>
+            {% endif %}
             <ul class="nav">
                 {% if user.is_authenticated %}
 
