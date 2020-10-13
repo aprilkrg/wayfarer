@@ -10,26 +10,31 @@ from django.core.mail import send_mail
 def register(request):
     
     if request.method == 'POST':
-        current_city = request.POST['current_city']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
+        if request.POST !='':
+            try:
+                current_city = request.POST['current_city']
+                username = request.POST['username']
+                email = request.POST['email']
+                password = request.POST['password']
+                password2 = request.POST['password2']
+                if password == password2: 
+                    user = User.objects.create_user( username, email, password )
+                    user.save()
+                    profile = Profile( current_city=current_city, user_id=user )
+                    profile.save()
+                    profile_photo = Photo_profile( profile_id = profile )
+                    profile_photo.save()
+                    user = authenticate( request, username=username, password=password )
 
-        if password == password2: 
-            user = User.objects.create_user( username, email, password )
-            user.save()
-            profile = Profile( current_city=current_city, user_id=user )
-            profile.save()
-            profile_photo = Photo_profile( profile_id = profile )
-            profile_photo.save()
-            user = authenticate( request, username=username, password=password )
+                    if user is not None:
+                        auth_login( request, user )
+                        return redirect( "/profile/" )
+            except:
+                print('something went wrong')
+                return redirect('home')
 
-            if user is not None:
-                auth_login( request, user )
-                return redirect( "/profile/" )
-        else:
-            return render( request, 'home.html' )
+    else:
+        return render( request, 'home.html' )
 
 
 def login(request):

@@ -3,23 +3,35 @@
 {% comment %} {% url 'artist_detail' pk=artist.id %} {% endcomment %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row full-screen">
+    <div class="row full-screen p-3">
 
         {% comment %} NOTE city side bar {% endcomment %}
-        <div class="col-2 bg-light p-2">
-            <h1 class="city-header">cities</h1>
-            {% for city in  cities %}
-                <ul>
-                    <a href="{% url 'cities' city.id %}">
-                        {{ city.name }}
-                    </a>
-                </ul>
+        <div class="col-3 city-sidebar p-2 mr-3">
+            <h3 class="city-header">cities</h3>
 
-            {% endfor %}
+                {% for city in  cities %}
+                    <div class="card mb-3 p-2 shadow-sm bg-blue justify-content-center">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="{{ city.image }}" class="card-img" alt="...">
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a class="city-link" href="{% url 'cities' city.id %}">{{ city.name }}   </a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+
+                {% endfor %}
+           
         </div>
 
         {% comment %} NOTE city main content details {% endcomment %}
-        <div class="col">
+        <div class="col border">
 
             {% comment %} conatainer start {% endcomment %}
             <div class="container p-3">
@@ -28,7 +40,7 @@
                 <div class="row mb-4 ">
 
                     {% comment %} titles/header column {% endcomment %}
-                    <div class="col-3" >
+                    <div class="col-4 ">
                         <h1 class="city-header">{{ city.name }}</h1>
                         <strong>{{ city.country }}</strong>
                     </div>
@@ -42,35 +54,40 @@
                 {% comment %} row 1 ends {% endcomment %}
 
                  {% comment %} row 2 add post button {% endcomment %}
-                <div class="row mb-4 ">
+                <div class="row mb-2 ">
                     <div class="col">
-                        <button type="button" class="btn btn-primary rounded-circle float-right" data-toggle="modal" data-target="#sign-up" >
+                        <button type="button" class="btn btn-primary rounded-circle float-right" data-toggle="modal" data-target="#add_post" >
                             &#43;
                         </button>
                     </div>
                 </div>
                {% comment %} row 2 ends {% endcomment %}
-
+                  <p>{{ user.profile.profile_photo.photo_url }}</p>  
                 {% comment %} row 3 comments {% endcomment %}
                 <div class="row">
                     <div class="col">
+                    <div class="my-3 p-3 bg-blue rounded shadow">
+                        <h3 class="city-header">Posts</h3> 
 
-                    {% for post in  posts %}
+                        {% for post in  posts %}
+                            <div class="card mb-3 p-2 shadow-sm ">
+                            <div class="row no-gutters">
+                                <div class="col-md-3">
+                                    <img src="{{ profile_photo }}" class="card-img" alt="...">
+                                </div>
 
-                        <div class="media text-muted pt-3">
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                                            <p>{{post.post_body}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
 
-                            {% comment %} <div class="media-image mr-2 shadow">
-                            <img class="card-img-right flex-auto d-none d-md-block media-image__img" data-src="holder.js/200x250?theme=thumb" alt="avatar" src="{{ profile_photo }}" data-holder-rendered="true" />
-                            </div> {% endcomment %}
-
-                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark">
-                                <a href="{% url 'post' post.id %}">{{ post.title }}</a>
-                            </strong>
-                            </p>
-                        </div>
-
-                    {% endfor %}
+                        {% endfor %}
+                        
+                    </div>
 
                     </div>
                 </div>
@@ -82,4 +99,64 @@
     </div>
 
 </div>
+
+
+<!-- Modal add post -->
+<div class="modal fade"  id="add_post" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <div class="modal-lg modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="staticBackdropLabel">{{ modalTitle }}</h5>    
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+                <form action="{% url 'add_post' city.id %}" method="POST" class="card-panel">
+                    {% csrf_token %}
+                    <select class="custom-select" name='city_id'>
+                        <option default>Select a City....</option>
+                        {% for city in  cities %}
+                            <option value="{{ city.id }}">{{ city.name }}</option>
+                        {% endfor %}
+                        
+                    </select>
+                    
+
+                    <input type="text" name="title">
+
+                    <textarea name="post_body" id="post_body" cols="30" rows="10"></textarea>
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="add post">
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                &nbsp; 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block script_tags %}
+
+    {% if  error %}
+        console.log('error!')
+    {% endif %}
+
+    $(document).ready(() => {
+        $('#add_post').modal('toggle');
+    });
+
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -20,16 +21,16 @@ def home( request ):
 
 ################### NOTE City views ################################
 
-def cities_list( request,  pk ):
+def cities_list( request,  pk=1 ):
     
     cities = City.objects.all()
     city = City.objects.get(id=pk)
-    posts = Post.objects.filter(id=pk)
+    posts = Post.objects.filter(city_id=pk)
 
     context = {
         'cities': cities,
         'city': city,
-        'posts': posts
+        'posts': posts.order_by('-created_at')
     }
 
     return render(request, 'city/index.html', context )
@@ -38,6 +39,7 @@ def cities_list( request,  pk ):
 
 
 ################### NOTE Profile views ################################
+
 
 def profile(  request ):
     user_post = Post.objects.filter( user_id=request.user.id )
@@ -94,39 +96,8 @@ def profile_edit(request, pk):
         profile.save()
         print(current_city, 'current city <<<<')
         return redirect("/profile/")
-        
-    # else:
-    #     print('Something went wrong')
-    #     return redirect(f'/profile/{pk}/edit')
-
-    
-    return render(request, 'user/profile_edit.html')
-    # return HttpResponse('edit')
-#     if request.method == 'POST':
-#         try:
-#             profile_form = Profile_Form(request.POST, request.FILES, instance=user.profile)
-#             if profile_form.is_valid():
-#                 new_profile = profile_form.save(commit=False)
-#                 new_profile.user = request.user
-#                 profile.image = request.FILES['image']
-#                 new_profile.save()
-#         except:
-#             profile_form = Profile_Form(request.POST, request.FILES)
-#             if profile_form.is_valid():
-#                 new_profile = profile_form.save(commit=False)
-#                 new_profile.user = request.user
-#                 profile.image = request.FILES['image']
-#                 new_profile.save()
-#         return redirect('profile')
-#     else:
-#         try:
-#             profile_form = Profile_Form(instance=user.profile)
-#             context = {'profile_form': profile_form}
-#             return render(request, 'account/edit.html', context)
-#         except:
-#             profile_form = Profile_Form()
-#             context = {'profile_form': profile_form}
-#             return render(request, 'account/edit.html', context)    
+    else:
+        return render(request, 'user/profile_edit.html')  
 
 #####################################################################
 
@@ -136,3 +107,31 @@ def post_detail( request, pk ):
     post = Post.objects.get( id=pk )
     context = { 'post': post }
     return render(request, 'post/show.html', context ) 
+
+
+def add_post( request, pk ):
+
+    current_city = pk
+    if request.method == 'POST':
+        if request.POST != '':
+            try:
+                title = request.POST['title']
+                body = request.POST['post_body']
+                city = City.objects.get( id=request.POST['city_id'] )
+                user = User.objects.get( id=request.user.id ) 
+                new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
+                new_post.save()
+                return redirect(f'/cities/{ current_city }')
+            except:
+                print('Something went wrong')
+                error = 'form can not be empty'
+                context = {
+                    'error': error,
+                }
+                return redirect(f'/cities/{ current_city }')
+                # return render( request, 'city/index.html', context )
+    
+
+def delete_post ( request, pk ):
+    Post.objects.get( id=pk ).delete()
+    return redirect('cities')

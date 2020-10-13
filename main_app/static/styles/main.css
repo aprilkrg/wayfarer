@@ -1,3 +1,8 @@
+@import './abstract/variebles.css';
+@import './bootstrap/overwrite.css';
+@import './base/base.css';
+
+
 .carousel-item {
     max-height: 80vh;
 }
@@ -6,8 +11,8 @@
     text-align: center;
 }
 
-nav {
-    /* background-color: grey; */
+.navbar {
+    background-color: var( --primary-dark ) !important;
     color: whitesmoke;
 }
 
@@ -78,6 +83,9 @@ nav {
     height: 100%; 
 }
 
+.city-sidebar {
+    background-color: var(--primary-dark);
+}
 
 .city-header {
     text-transform: capitalize;
@@ -86,4 +94,21 @@ nav {
 .city-img {
     width: 100%;
     height: 100%;
+}
+
+/* sidebar */
+
+.card-title {
+    text-transform: capitalize;
+}
+
+
+.city-link {
+    color: inherit;
+    text-decoration: none !important;
+}
+
+
+.container-fluid {
+    background-image: linear-gradient( 360deg, var(--primary-dark) 50%, var(--secondary-dark));
 }
