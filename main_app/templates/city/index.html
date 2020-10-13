@@ -3,14 +3,13 @@
 {% comment %} {% url 'artist_detail' pk=artist.id %} {% endcomment %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row full-screen">
+    <div class="row full-screen p-3">
 
         {% comment %} NOTE city side bar {% endcomment %}
         <div class="col-3 city-sidebar p-2 mr-3">
             <h3 class="city-header">cities</h3>
 
                 {% for city in  cities %}
-      
                     <div class="card mb-3 p-2 shadow-sm bg-blue justify-content-center">
                         <div class="row no-gutters">
                             <div class="col-md-4">
@@ -32,7 +31,7 @@
         </div>
 
         {% comment %} NOTE city main content details {% endcomment %}
-        <div class="col">
+        <div class="col border">
 
             {% comment %} conatainer start {% endcomment %}
             <div class="container p-3">
