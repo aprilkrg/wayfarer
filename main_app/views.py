@@ -30,7 +30,7 @@ def cities_list( request,  pk ):
     context = {
         'cities': cities,
         'city': city,
-        'posts': posts
+        'posts': posts.order_by('-created_at')
     }
 
     return render(request, 'city/index.html', context )

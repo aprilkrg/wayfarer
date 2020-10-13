@@ -7,23 +7,26 @@
 
         {% comment %} NOTE city side bar {% endcomment %}
         <div class="col-3 bg-light p-2 border mr-3">
-            <h1 class="city-header">cities</h1>
+            <h3 class="city-header">cities</h3>
             <u>
                 {% for city in  cities %}
-                <a href="{% url 'cities' city.id %}">        
+
+                <a class="city-link" href="{% url 'cities' city.id %}">        
                     <div class="card mb-3 p-2 shadow-sm ">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                            <img src="{{ city.image }}" class="card-img" alt="...">
+                                <img src="{{ city.image }}" class="card-img" alt="...">
                             </div>
+
                             <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ city.name }}</h5>
-                            </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ city.name }}</h5>
+                                </div>
                             </div>
                         </div>
                     </div>    
                 </a>
+
                 {% endfor %}
             </u>
         </div>
@@ -52,7 +55,7 @@
                 {% comment %} row 1 ends {% endcomment %}
 
                  {% comment %} row 2 add post button {% endcomment %}
-                <div class="row mb-4 ">
+                <div class="row mb-2 ">
                     <div class="col">
                         <button type="button" class="btn btn-primary rounded-circle float-right" data-toggle="modal" data-target="#add_post" >
                             &#43;
@@ -65,14 +68,28 @@
                 <div class="row">
                     <div class="col">
                     <div class="my-3 p-3 bg-white rounded shadow-sm">
-
+                      <h3 class="city-header">Posts</h3>   
                     {% for post in  posts %}
+                        <div class="card mb-3 p-2 shadow-sm ">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <img src="..." class="card-img" alt="...">
+                            </div>
 
-                        <div class="media text-muted pt-3">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                                        <p>{{post.post_body}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
 
-                            {% comment %} <div class="media-image mr-2 shadow">
+                        {% comment %} <div class="media text-muted pt-3">
+
+                            <div class="media-image mr-2 shadow">
                                 <img class="card-img-right flex-auto d-none d-md-block media-image__img" data-src="holder.js/200x250?theme=thumb" alt="avatar" src="{{ profile_photo }}" data-holder-rendered="true" />
-                            </div> {% endcomment %}
+                            </div>
 
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                             <strong class="d-block text-gray-dark">
@@ -80,7 +97,7 @@
                                 <p>{{post.post_body}}</p>
                             </strong>
                             </p>
-                        </div>
+                        </div> {% endcomment %}
 
                     {% endfor %}
                         
