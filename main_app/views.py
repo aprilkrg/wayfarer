@@ -21,7 +21,7 @@ def home( request ):
 
 ################### NOTE City views ################################
 
-def cities_list( request,  pk ):
+def cities_list( request,  pk=1 ):
     
     cities = City.objects.all()
     city = City.objects.get(id=pk)
@@ -139,16 +139,29 @@ def post_detail( request, pk ):
     return render(request, 'post/show.html', context ) 
 
 
-
-
 def add_post( request, pk ):
+
     current_city = pk
     if request.method == 'POST':
-        title = request.POST['title']
-        body = request.POST['post_body']
-        city = City.objects.get( id=request.POST['city_id'] )
-        user = User.objects.get( id=request.user.id ) 
-        new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
-        new_post.save()
-        return redirect(f'/cities/{ current_city }')
+        if request.POST is not '':
+            try:
+                title = request.POST['title']
+                body = request.POST['post_body']
+                city = City.objects.get( id=request.POST['city_id'] )
+                user = User.objects.get( id=request.user.id ) 
+                new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
+                new_post.save()
+                return redirect(f'/cities/{ current_city }')
+            except:
+                print('Something went wrong')
+                error = 'form can not be empty'
+                context = {
+                    'error': error,
+                }
+                return redirect(f'/cities/{ current_city }')
+                # return render( request, 'city/index.html', context )
     
+
+def delete_post ( request, pk ):
+    Post.objects.get( id=pk ).delete()
+    return redirect('cities')
