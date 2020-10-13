@@ -3,23 +3,33 @@
 {% comment %} {% url 'artist_detail' pk=artist.id %} {% endcomment %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row full-screen">
+    <div class="row full-screen p-3">
 
         {% comment %} NOTE city side bar {% endcomment %}
-        <div class="col-2 bg-light p-2">
+        <div class="col-3 bg-light p-2 border mr-3">
             <h1 class="city-header">cities</h1>
-            {% for city in  cities %}
-                <ul>
-                    <a href="{% url 'cities' city.id %}">
-                        {{ city.name }}
-                    </a>
-                </ul>
-
-            {% endfor %}
+            <u>
+                {% for city in  cities %}
+                <a href="{% url 'cities' city.id %}">        
+                    <div class="card mb-3 p-2 shadow-sm ">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                            <img src="{{ city.image }}" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ city.name }}</h5>
+                            </div>
+                            </div>
+                        </div>
+                    </div>    
+                </a>
+                {% endfor %}
+            </u>
         </div>
 
         {% comment %} NOTE city main content details {% endcomment %}
-        <div class="col">
+        <div class="col border">
 
             {% comment %} conatainer start {% endcomment %}
             <div class="container p-3">
@@ -28,7 +38,7 @@
                 <div class="row mb-4 ">
 
                     {% comment %} titles/header column {% endcomment %}
-                    <div class="col-3" >
+                    <div class="col-3 ">
                         <h1 class="city-header">{{ city.name }}</h1>
                         <strong>{{ city.country }}</strong>
                     </div>
@@ -50,7 +60,7 @@
                     </div>
                 </div>
                {% comment %} row 2 ends {% endcomment %}
-
+                  <p>{{ user.profile.profile_photo.photo_url }}</p>  
                 {% comment %} row 3 comments {% endcomment %}
                 <div class="row">
                     <div class="col">

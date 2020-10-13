@@ -150,4 +150,5 @@ def add_post( request, pk ):
         user = User.objects.get( id=request.user.id ) 
         new_post = Post( title=title,  post_body=body, city_id=city, user_id=user )
         new_post.save()
-        return redirect(f'/cities/{ current_city }')    
+        return redirect(f'/cities/{ current_city }')
+    
