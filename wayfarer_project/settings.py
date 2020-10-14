@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'b-)%66&fa$_qgdt2l95&wmyby&3bq#*nfj+0q5n5_m$15gy7_w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -127,4 +127,3 @@ LOGIN_REDIRECT_URL = '/cities/1'
 
 
 django_on_heroku.settings(locals())
-# adadad
