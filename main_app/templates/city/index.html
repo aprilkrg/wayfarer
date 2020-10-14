@@ -6,11 +6,11 @@
     <div class="row full-screen">
 
         {% comment %} NOTE city side bar {% endcomment %}
-        <div class="col-3 city-sidebar bg-light p-2 mr-3">
+        <div class="col-3 city-sidebar bg-light p-4 mr-3">
             <h3 class="city-header">cities</h3>
 
                 {% for city in  cities %}
-                    <div class="card mb-3 p-2 shadow-sm justify-content-center">
+                    <div class="card mb-3 p-2 shadow-sm city-sidebar-cards rounded-lg">
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <img src="{{ city.image }}" class="card-img" alt="...">

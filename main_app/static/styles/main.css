@@ -84,12 +84,39 @@
     height: 100%; 
 }
 
+/* NOTE sidebar */
+
 /* .city-sidebar {
-    background-color: var(--primary-dark);
+    background-color: var( --primary-dark ) ;
 } */
+
+
+.city-sidebar-cards {
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, var(--secondary-dark) 50%);
+    background-size: 220%;
+    text-transform: capitalize;
+    transition: all .4s;
+}
+
+.city-sidebar-cards:hover,
+.city-sidebar-cards:active {
+    background-position: 100%;
+    color: var(--primary-white);
+    transform: scale(1.05);
+    
+}
+.city-link {
+    color: inherit;
+}
+
+.city-link:hover  {
+    color: var(--primary-white);
+    text-decoration: none !important;
+}
 
 .city-header {
     text-transform: capitalize;
+    /* color: var(--primary-white); */
 }
 
 .city-img {
@@ -97,21 +124,13 @@
     height: 100%;
 }
 
-/* sidebar */
-
-.card-title {
+/* .card-title {
     text-transform: capitalize;
-}
-
-
-.city-link {
-    color: inherit;
-    text-decoration: none !important;
-}
+} */
 
 
 /* .container-fluid {
-    background-image: linear-gradient( 360deg, var(--primary-dark) 50%, var(--secondary-dark));
+    background-image: linear-gradient( -50deg, var(--secondary-dark) 3%, var(--primary-white));
 } */
 
 /* .post-card  {
@@ -133,3 +152,5 @@
 .post-title-modal {
     color: var( --primary-orange ) !important;
 }
+
+
