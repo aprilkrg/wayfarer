@@ -2,6 +2,7 @@
 @import './bootstrap/overwrite.css';
 @import './animations/animations.css';
 @import './components/buttons.css';
+@import './components/background.css';
 @import './base/base.css';
 
 
@@ -134,9 +135,9 @@
     background-image: linear-gradient( -50deg, var(--secondary-dark) 3%, var(--primary-white));
 } */
 
-/* .post-card  {
+.post-card  {
     background-image: linear-gradient( -30deg, var(--primary-dark), var(--secondary-dark) );
-} */
+}
 
 
 /* edit form */
