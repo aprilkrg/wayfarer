@@ -68,14 +68,9 @@
 
             <div class="modal-body">
             <p> "Are you sure you want to delete <span class="post-title-modal">{{ post.title }}</span>?"</p>
-                <form action="{% url 'delete_post' post.id %}" method="POST" class="card-panel">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-primary float-right" value="yes">
-                    <input type="submit" class="btn btn-primary float-right mr-3" value="no" data-dismiss="modal" aria-label="Close">
-                    {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    no
-                    </button> {% endcomment %}
-                </form>
+
+                {% include 'post/delete_post.html' with post=post.id %} 
+                
             </div>
 
             <div class="modal-footer">

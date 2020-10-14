@@ -1,1 +1,29 @@
-<h1>{{ current_city }}</h1>
+<form action="{% url 'add_post' city %}" method="POST" class="card-panel">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="form-group col-md-8">
+            <select class="custom-select" name='city_id'>
+                <option default>Select a City....</option>
+                {% for city in  cities %}
+                    <option value="{{ city.id }}">{{ city.name }}</option>
+                {% endfor %}
+                
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="title" placeholder="title" name="title" >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col">
+            <textarea name="post_body" id="post_body" cols="56" rows="10"></textarea>
+        </div>
+    </div>
+   
+    <input type="submit" class="btn btn-primary float-right" value="Add Post">
+</form>
