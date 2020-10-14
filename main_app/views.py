@@ -22,17 +22,33 @@ def home( request ):
 ################### NOTE City views ################################
 
 def cities_list( request,  pk=1 ):
-    # user = User.objects.get(id=request.user.id)
-    print(request.user.profile.__dict__)
+    
     cities = City.objects.all()
     city = City.objects.get(id=pk)
     posts = Post.objects.filter(city=pk)
+    all_post = Post.objects.all()
+    all_photos = Photo_profile.objects.all()
+
+    post_list = [] 
+    for post in all_post:
+        for photo in all_photos:
+            user_post_id = post.user_id
+            if user_post_id == photo.profile_id:
+
+                post_list.append(
+                    { 
+                        'user_photo': photo.photo_url,
+                        'posts_list': posts.order_by('-created_at')
+                    }
+                )
 
     context = {
         'cities': cities,
         'city': city,
         'posts': posts.order_by('-created_at')
     }
+
+    print( 'context', context['posts'] )
 
     return render(request, 'city/index.html', context )
 
@@ -43,8 +59,10 @@ def cities_list( request,  pk=1 ):
 
 
 def profile(  request ):
-    user_post = Post.objects.filter( user=request.user.id )
-    profile_photo = Photo_profile.objects.get( profile=request.user.id )
+    print( request.user.id )
+    user_post = Post.objects.filter( user_id = request.user.id )
+    print(user_post)
+    profile_photo = Photo_profile.objects.get( profile_id = request.user.id )
 
     context = {
         'user_posts': user_post,
