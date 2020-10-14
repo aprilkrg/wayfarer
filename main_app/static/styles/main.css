@@ -1,6 +1,8 @@
 @import './abstract/variebles.css';
 @import './bootstrap/overwrite.css';
 @import './animations/animations.css';
+@import './components/buttons.css';
+@import './components/background.css';
 @import './base/base.css';
 
 
@@ -93,7 +95,7 @@
 
 .city-sidebar-cards {
     background-image: linear-gradient(120deg, transparent 0%, transparent 50%, var(--secondary-dark) 50%);
-    background-size: 220%;
+    background-size: 221%;
     text-transform: capitalize;
     transition: all .4s;
 }
@@ -133,9 +135,9 @@
     background-image: linear-gradient( -50deg, var(--secondary-dark) 3%, var(--primary-white));
 } */
 
-/* .post-card  {
+.post-card  {
     background-image: linear-gradient( -30deg, var(--primary-dark), var(--secondary-dark) );
-} */
+}
 
 
 /* edit form */
@@ -153,4 +155,21 @@
     color: var( --primary-orange ) !important;
 }
 
+/* .active {
+    background-color: var(--secondary-dark);
+} */
 
+.active {
+    background-color: var( --secondary-dark );
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, var( --primary-white ) 50%);
+    background-size: 220%;
+    text-transform: capitalize;
+    transition: all .4s;
+}
+
+.active:hover,
+.active:active {
+    background-position: 100%;
+    color: #000000;
+    transform: scale(1.05);
+}    

@@ -1,0 +1,5 @@
+<form action="{% url 'delete_post' post %}" method="POST" class="card-panel">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary float-right" value="yes">
+    <input type="submit" class="btn btn-primary float-right mr-3" value="no" data-dismiss="modal" aria-label="Close">
+</form>
