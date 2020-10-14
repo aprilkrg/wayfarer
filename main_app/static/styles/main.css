@@ -1,3 +1,11 @@
+@import './abstract/variebles.css';
+@import './bootstrap/overwrite.css';
+@import './animations/animations.css';
+@import './components/buttons.css';
+@import './components/background.css';
+@import './base/base.css';
+
+
 .carousel-item {
     max-height: 80vh;
 }
@@ -6,8 +14,8 @@
     text-align: center;
 }
 
-nav {
-    /* background-color: grey; */
+.navbar {
+    background-color: var(--secondary-dark) !important;
     color: whitesmoke;
 }
 
@@ -78,12 +86,90 @@ nav {
     height: 100%; 
 }
 
+/* NOTE sidebar */
+
+/* .city-sidebar {
+    background-color: var( --primary-dark ) ;
+} */
+
+
+.city-sidebar-cards {
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, var(--secondary-dark) 50%);
+    background-size: 221%;
+    text-transform: capitalize;
+    transition: all .4s;
+}
+
+.city-sidebar-cards:hover,
+.city-sidebar-cards:active {
+    background-position: 100%;
+    color: var(--primary-white);
+    transform: scale(1.05);
+    
+}
+.city-link {
+    color: inherit;
+}
+
+.city-link:hover  {
+    color: var(--primary-white);
+    text-decoration: none !important;
+}
 
 .city-header {
     text-transform: capitalize;
+    /* color: var(--primary-white); */
 }
 
 .city-img {
     width: 100%;
     height: 100%;
 }
+
+/* .card-title {
+    text-transform: capitalize;
+} */
+
+
+/* .container-fluid {
+    background-image: linear-gradient( -50deg, var(--secondary-dark) 3%, var(--primary-white));
+} */
+
+.post-card  {
+    background-image: linear-gradient( -30deg, var(--primary-dark), var(--secondary-dark) );
+}
+
+
+/* edit form */
+
+#edit-post {
+    visibility: hidden;
+}
+
+.animate {
+    animation: moveInFromTheBack 2s ease-out;
+}
+
+
+.post-title-modal {
+    color: var( --primary-orange ) !important;
+}
+
+/* .active {
+    background-color: var(--secondary-dark);
+} */
+
+.active {
+    background-color: var( --secondary-dark );
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, var( --primary-white ) 50%);
+    background-size: 220%;
+    text-transform: capitalize;
+    transition: all .4s;
+}
+
+.active:hover,
+.active:active {
+    background-position: 100%;
+    color: #000000;
+    transform: scale(1.05);
+}    

@@ -1,0 +1,19 @@
+{% comment %} Edit From {% endcomment %}
+<form class="mt-4" action="{% url 'edit_post' post %}" method="POST" class="card-panel">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="title" placeholder="{{ placeholder }}" name="title" value='{{ post.title }}'>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col">
+            <textarea name="post_body" id="post_body" cols="60" rows="10">
+                {{ textarea }}
+            </textarea>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Add Post">
+</form>

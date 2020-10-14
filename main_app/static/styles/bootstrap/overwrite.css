@@ -1,0 +1,12 @@
+/* Bootstrap Shadow */
+
+.btn-primary {
+    color: var( --primary-white ) !important;
+    background-color: var( --primary-orange ) !important;
+    border-color: var( --primary-orange ) !important;
+    font-size: larger;
+}
+
+.bg-blue {
+    background-color: var( --secondary-dark ) !important;
+}

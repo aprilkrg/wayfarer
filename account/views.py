@@ -19,9 +19,9 @@ def register(request):
         if password == password2: 
             user = User.objects.create_user( username, email, password )
             user.save()
-            profile = Profile( current_city=current_city, user_id=user )
+            profile = Profile( current_city=current_city, user=user )
             profile.save()
-            profile_photo = Photo_profile( profile_id = profile )
+            profile_photo = Photo_profile( profile = profile )
             profile_photo.save()
             user = authenticate( request, username=username, password=password )
 
@@ -33,6 +33,7 @@ def register(request):
 
 
 def login(request):
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
