@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 import uuid
 import boto3
+from datetime import datetime
 from .models import City, Post, Photo_profile, Profile
 
 # Add these "constants" below the imports
@@ -140,21 +141,30 @@ def add_post( request, pk ):
                 context = {
                     'error': error,
                 }
-                return redirect(f'/cities/{ current_city }', context )
-                # return render( request, 'city/index.html', context )
+                # return redirect(f'/cities/{ current_city }', context )
+                return render( request, 'city/index.html', context )
 
 
 def edit_post ( request, pk ):
     if request.method == 'POST':
-        post = Post.objects.get( id=pk )
-        title = request.POST['title']
-        body = request.POST['post_body']
-        post.title = title
-        post.post_body = body
-        post.save()
-        return redirect(f'/posts/{pk}')
-    # else:
-    #     return render( request, 'post/show.html' )      
+        try:
+            post = Post.objects.get( id=pk )
+            title = request.POST['title']
+            body = request.POST['post_body']
+            post.title = title
+            post.post_body = body
+            # current date and time
+            now = datetime.now()
+            post.updated_at = datetime.timestamp(now)
+            post.save()
+            return redirect(f'/posts/{pk}')
+        except:
+            print('something went wrong')
+            error = 'hahahahaha'
+            return render(request, 'post/show.html', { 'error': error })
+    else:
+        error = 'hahahahaha'
+        return render(request, 'post/show.html', { 'error': error })    
 
 def delete_post ( request, pk ):
     Post.objects.get( id=pk ).delete()

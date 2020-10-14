@@ -11,8 +11,11 @@
                 <div class="card-body">
 
                     <h5 class="card-title">Title: {{ post.title }}</h5>
+                    <strong class="text-muted">
+                            Last Update: {{ post.updated_at }}
+                        </strong>
     
-                    <h6 class="card-subtitle mb-2 text-muted">Author: 
+                    <h6 class="card-subtitle mb-2 mt-2 text-muted">Author: 
                         <strong>
                             <a href="{% url 'profile' %}">{{ post.user }}</a>
                         </strong>
@@ -33,7 +36,7 @@
                     <h5 class="card-title">Edit Post</h5>
 
                     <strong class="text-muted ">
-                        Last Post: {{ post.updated_at }}
+                        Last Update: {{ post.updated_at }}
                     </strong>
 
                     <form class="mt-4" action="{% url 'edit_post' post.id %}" method="POST" class="card-panel">
@@ -47,7 +50,7 @@
 
                         <div class="row">
                             <div class="form-group col">
-                                <textarea name="post_body" id="post_body" cols="56" rows="10">
+                                <textarea name="post_body" id="post_body" cols="60" rows="10">
                                     {{ post.post_body }}
                                 </textarea>
                             </div>
@@ -82,7 +85,7 @@
             </div>
 
             <div class="modal-body">
-            <p> "Are you sure you want to delete {{ post.title }}?"</p>
+            <p> "Are you sure you want to delete <span class="post-title-modal">{{ post.title }}</span>?"</p>
                 <form action="{% url 'delete_post' post.id %}" method="POST" class="card-panel">
                     {% csrf_token %}
                     <input type="submit" class="btn btn-primary float-right" value="yes">

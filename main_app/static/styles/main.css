@@ -128,3 +128,8 @@
 .animate {
     animation: moveInFromTheBack 2s ease-out;
 }
+
+
+.post-title-modal {
+    color: var( --primary-orange ) !important;
+}
