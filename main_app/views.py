@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 import uuid
 import boto3
+from datetime import datetime
 from .models import City, Post, Photo_profile, Profile
 
 # Add these "constants" below the imports
@@ -22,17 +23,32 @@ def home( request ):
 ################### NOTE City views ################################
 
 def cities_list( request,  pk=1 ):
-    # user = User.objects.get(id=request.user.id)
-    print(request.user.profile.__dict__)
+    
     cities = City.objects.all()
     city = City.objects.get(id=pk)
     posts = Post.objects.filter(city=pk)
+    all_photos = Photo_profile.objects.all()
+    post_witd_imgs = {}
+    city_posts = []
+    for post in posts:
+        for photo in all_photos:
+            user_post_id = post.user_id
+            if user_post_id == photo.profile_id:
+                post_witd_imgs['user_photo'] = photo.photo_url
+                post_witd_imgs['title'] = post.title
+                post_witd_imgs['post_body'] = post.post_body
+                post_witd_imgs['author'] = post.user
+                post_witd_imgs['created_at'] = post.created_at
+                city_posts.append( post_witd_imgs )
+                print(city_posts)
 
     context = {
         'cities': cities,
         'city': city,
         'posts': posts.order_by('-created_at')
     }
+
+    print( 'context', context['posts'] )
 
     return render(request, 'city/index.html', context )
 
@@ -43,8 +59,8 @@ def cities_list( request,  pk=1 ):
 
 
 def profile(  request ):
-    user_post = Post.objects.filter( user=request.user.id )
-    profile_photo = Photo_profile.objects.get( profile=request.user.id )
+    user_post = Post.objects.filter( user_id = request.user.id )
+    profile_photo = Photo_profile.objects.get( profile_id = request.user.id )
 
     context = {
         'user_posts': user_post,
@@ -84,18 +100,14 @@ def update_profile_photo( request, pk ):
 # todo : error handling
 def profile_edit(request, pk):
     if request.method == 'POST':
-        current_city = request.POST['current_city']
-        print(current_city)
         # overwrite the value of current city (den) to input value (chicago)
         # user.profile.current_city = current_city
         user = User.objects.get(id=pk)
         profile = Profile.objects.get(id=pk)
         user.username = request.POST['username']
         user.save()
-        print(user.username, 'User name <<<<')
         profile.current_city = request.POST['current_city']
         profile.save()
-        print(current_city, 'current city <<<<')
         return redirect("/profile/")
     else:
         return render(request, 'user/profile_edit.html')  
@@ -129,10 +141,31 @@ def add_post( request, pk ):
                 context = {
                     'error': error,
                 }
-                return redirect(f'/cities/{ current_city }')
-                # return render( request, 'city/index.html', context )
-    
+                # return redirect(f'/cities/{ current_city }', context )
+                return render( request, 'city/index.html', context )
+
+
+def edit_post ( request, pk ):
+    if request.method == 'POST':
+        try:
+            post = Post.objects.get( id=pk )
+            title = request.POST['title']
+            body = request.POST['post_body']
+            post.title = title
+            post.post_body = body
+            # current date and time
+            now = datetime.now()
+            post.updated_at = datetime.timestamp(now)
+            post.save()
+            return redirect(f'/posts/{pk}')
+        except:
+            print('something went wrong')
+            error = 'hahahahaha'
+            return render(request, 'post/show.html', { 'error': error })
+    else:
+        error = 'hahahahaha'
+        return render(request, 'post/show.html', { 'error': error })    
 
 def delete_post ( request, pk ):
     Post.objects.get( id=pk ).delete()
-    return redirect('cities')
+    return redirect('/cities/1')
