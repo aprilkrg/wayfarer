@@ -13,7 +13,7 @@
     
                     <h6 class="card-subtitle mb-2 text-muted">Author: 
                         <strong>
-                            <a href="{% url 'profile' %}">{{ user.username }}</a>
+                            <a href="{% url 'profile' %}">{{ post.user }}</a>
                         </strong>
                     </h6>
                     <p class="card-text">{{ post.post_body }}</p>

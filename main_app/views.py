@@ -124,6 +124,7 @@ def profile_edit(request, pk):
 
 def post_detail( request, pk ):
     post = Post.objects.get( id=pk )
+    print(post.user)
     context = { 'post': post }
     return render(request, 'post/show.html', context ) 
 
