@@ -129,10 +129,10 @@ def add_post( request, pk ):
                 context = {
                     'error': error,
                 }
-                return redirect(f'/cities/{ current_city }')
+                return redirect(f'/cities/{ current_city }', context )
                 # return render( request, 'city/index.html', context )
     
 
 def delete_post ( request, pk ):
     Post.objects.get( id=pk ).delete()
-    return redirect('cities')
+    return redirect('/cities/1')

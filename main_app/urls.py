@@ -10,4 +10,5 @@ urlpatterns = [
     path('profile/<int:pk>/updatephoto/', views.update_profile_photo, name='update_photo'),
     path('posts/<int:pk>', views.post_detail, name='post' ),
     path('post/<int:pk>/addpost', views.add_post, name='add_post' ),
+    path('post/<int:pk>/deletepost', views.delete_post, name='delete_post' ),
 ]
