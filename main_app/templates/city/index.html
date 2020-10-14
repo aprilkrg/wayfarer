@@ -58,7 +58,7 @@
                  {% comment %} row 2 add post button {% endcomment %}
                 <div class="row mb-2 ">
                     <div class="col">
-                        <button type="button" class="btn btn-primary shadow-lg rounded-circle float-right" data-toggle="modal" data-target="#add_post" >
+                        <button type="button" class="btn btn-primary add-btn float-right" data-toggle="modal" data-target="#add_post" >
                             &#43;
                         </button>
                     </div>
@@ -117,6 +117,7 @@
             </div>
 
             <div class="modal-body">
+
                 {% include 'post/new_post.html' with city=city.id %} 
             </div>
 

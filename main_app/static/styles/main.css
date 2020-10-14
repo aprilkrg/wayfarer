@@ -1,6 +1,7 @@
 @import './abstract/variebles.css';
 @import './bootstrap/overwrite.css';
 @import './animations/animations.css';
+@import './components/buttons.css';
 @import './base/base.css';
 
 
