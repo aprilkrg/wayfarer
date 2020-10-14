@@ -18,7 +18,7 @@
                         </strong>
                     </h6>
                     <p class="card-text">{{ post.post_body }}</p>
-
+                        
                     <button id="post_edit" type="button" class="btn btn-success mr-2">Edit</button>
                     <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#delete_post">
                         Delete
@@ -36,7 +36,7 @@
                         Last Post: {{ post.updated_at }}
                     </strong>
 
-                    <form class="mt-4" action="#" method="POST" class="card-panel">
+                    <form class="mt-4" action="{% url 'edit_post' post.id %}" method="POST" class="card-panel">
                     {% csrf_token %}
 
                         <div class="row">
