@@ -1,0 +1,15 @@
+@keyframes moveInFromTheBack {
+    /* start */
+    0% {
+        opacity: 0;
+    }
+    /* middle state*/
+    50% {
+        opacity: 1;
+    }
+
+    /* final state */
+    100%{
+        opacity: 2;
+    }
+}
